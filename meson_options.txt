@@ -1,0 +1,60 @@
+option(
+  'docs',
+  type: 'feature',
+  value: 'enabled',
+  description: 'Build documentation',
+)
+
+option(
+  'ttymux',
+  type: 'combo',
+  choices: ['screen', 'tmux'],
+  value: 'tmux',
+)
+
+option(
+  'xmlreport',
+  type: 'boolean',
+  value: true,
+  description: 'Include XML reports.',
+)
+option(
+  'autorefresh',
+  type: 'boolean',
+  value: true,
+  description: 'Include "auto refresh" support.',
+)
+option(
+  'history',
+  type: 'boolean',
+  value: true,
+  description: 'Include "history" support.',
+)
+option(
+  'clusters',
+  type: 'boolean',
+  value: true,
+  description: 'Include "clusters" support.',
+)
+option(
+  'runcust',
+  type: 'boolean',
+  value: true,
+  description: 'Include "run custom commands" support.',
+)
+option(
+  'tclfilter',
+  type: 'feature',
+  value: 'enabled',
+  description: 'Include Tcl interpreter.',
+)
+option(
+  'xmlschemadir',
+  type: 'string',
+  value: '',
+)
+option(
+  'xmlschemauri',
+  type: 'string',
+  value: '',
+)

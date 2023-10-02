@@ -53,6 +53,8 @@ shared_src = [
   'clusters.h',
   'glue.c',
   'glue.h',
+  'ttymux.c',
+  'ttymux.h',
 ] + ttymux_src + runcust_src
 
 add_project_arguments('-DHAVE_CONFIG_H', language : 'c')

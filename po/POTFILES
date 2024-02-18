@@ -1,0 +1,17 @@
+src/apt-dater.c
+src/autoref.c
+src/clusters.c
+src/colors.c
+src/completion.c
+src/env.c
+src/exec.c
+src/history.c
+src/keyfiles.c
+src/lock.c
+src/parsecmd.c
+src/report.c
+src/screen.c
+src/sighandler.c
+src/stats.c
+src/tag.c
+src/ui.c

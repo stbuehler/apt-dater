@@ -1,3 +1,9 @@
+This is a fork
+==============
+
+Upstream <https://github.com/DE-IBH/apt-dater> hasn't been responsive for some time, so I'll try to maintain a small fork here in the branch `next`.
+Use <https://mesonbuild.com/> to build; given the glib dependency this should be available on your platform anyway (glib uses meson too).
+
 README for apt-dater
 ====================
 

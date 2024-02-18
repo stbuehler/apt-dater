@@ -1,0 +1,45 @@
+name: "Checks (Ubuntu: gcc, clang)"
+
+on: [push, pull_request]
+
+concurrency:
+  group: ${{github.workflow}}-${{github.head_ref}}
+  cancel-in-progress: true
+
+jobs:
+  linux-ubuntu:
+    runs-on: ubuntu-latest
+    name: linux-ubuntu-${{ matrix.compiler }}
+    strategy:
+      matrix:
+        compiler: ['gcc', 'clang']
+    steps:
+      - uses: actions/checkout@v4
+      - if: ${{ matrix.compiler == 'clang' }}
+        uses: egor-tensin/setup-clang@v1
+      - name: Install dependencies
+        run: |
+          pkgs=(
+            meson
+            gettext
+            xsltproc docbook-xsl
+            libpopt-dev
+            libglib2.0-dev
+            libncurses-dev
+            tcl-dev
+            libconfig-dev
+            screen
+            tmux
+            xxd
+            libxml2-dev
+          )
+          sudo apt-get install "${pkgs[@]}"
+      - name: meson setup
+        run: meson setup mesonbuild
+      - name: meson compile
+        run: meson compile -C mesonbuild
+      - name: meson test
+        run: meson test -C mesonbuild -v
+      - name: test other feature combinations on gcc
+        if: ${{ matrix.compiler != 'clang' }}
+        run: exec .github/meson_test_combinations.sh

@@ -11,15 +11,13 @@ foreach target: ['apt-dater.xml', 'hosts.xml']
   }
 endforeach
 
-xxd_exe = find_program('xxd', native: true)
-
 conf_generated = {}
 foreach src: ['apt-dater.xml', 'hosts.xml', 'screenrc', 'tmux.conf']
   target = src + '.inc'
   conf_generated += {
     target: custom_target(
       target,
-      command: [ xxd_exe, '--name', '@PLAINNAME@', '-i', '@INPUT@', '@OUTPUT@' ],
+      command: [ python_exe, blob_to_c_inc, '@INPUT@', '@OUTPUT@' ],
       input: _conf_generated.get(src, src),
       output: target,
       build_by_default: true,

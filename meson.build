@@ -42,6 +42,10 @@ if source_date_epoch == ''
   source_date_epoch = run_command(date_exe, '+%s', check: false).stdout().strip()
 endif
 
+pymod = import('python')
+python_exe = pymod.find_installation('python3')
+blob_to_c_inc = files('build/blob_to_c_inc.py')
+
 formatted_date = run_command(
   date_exe, '-u', '-d', '@' + source_date_epoch,
   check: false,

@@ -154,6 +154,6 @@ int main(int argc, char **argv, char **envp)
    }
  }
 
- execve("/usr/bin/ssh", argv, envp);
+ execvpe(SSH_BINARY, argv, envp);
  exit(EXIT_FAILURE);
 }

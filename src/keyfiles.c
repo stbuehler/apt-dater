@@ -357,8 +357,8 @@ gboolean loadConfig(const gchar *filename, CfgFile *lcfg) {
 #endif
 
     lcfg->ssh_optflags = getXPropStr(s_ssh, "opt-cmd-flags", "-t");
-    lcfg->ssh_cmd = getXPropStr(s_ssh, "cmd", "/usr/bin/ssh");
-    lcfg->sftp_cmd = getXPropStr(s_ssh, "sftp-cmd", "/usr/bin/sftp");
+    lcfg->ssh_cmd = getXPropStr(s_ssh, "cmd", SSH_BINARY);
+    lcfg->sftp_cmd = getXPropStr(s_ssh, "sftp-cmd", SFTP_BINARY);
 
     lcfg->umask = getXPropInt(s_path, "umask", S_IRWXG | S_IRWXO);
     umask(lcfg->umask);

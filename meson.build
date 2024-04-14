@@ -108,6 +108,20 @@ if dep_tcl.found()
   configuration.set('FEAT_TCLFILTER', 1)
 endif
 
+ssh_exe = find_program('ssh', native: false, required: false)
+if ssh_exe.found()
+  configuration.set_quoted('SSH_BINARY', ssh_exe.full_path())
+else
+  configuration.set_quoted('SSH_BINARY', 'ssh')
+endif
+
+sftp_exe = find_program('sftp', native: false, required: false)
+if sftp_exe.found()
+  configuration.set_quoted('SFTP_BINARY', sftp_exe.full_path())
+else
+  configuration.set_quoted('SFTP_BINARY', 'sftp')
+endif
+
 if get_option('ttymux') == 'screen'
   screen_exe = find_program('screen', native: false)
   configuration.set_quoted('SCREEN_BINARY', screen_exe.full_path())

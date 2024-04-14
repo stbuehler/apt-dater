@@ -53,8 +53,3 @@ option(
   type: 'string',
   value: '',
 )
-option(
-  'xmlschemauri',
-  type: 'string',
-  value: '',
-)

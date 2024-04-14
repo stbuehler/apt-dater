@@ -68,7 +68,6 @@ if($opt_o) {
 }
 
 my $xml = XML::Writer->new(%xparams);
-$xml->doctype('hosts', undef, '@XMLSCHEMAURI@/hosts.dtd');
 $xml->comment("
     Hosts file of apt-dater (parsed by libxml2)
     ===========================================

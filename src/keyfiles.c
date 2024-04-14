@@ -316,13 +316,18 @@ gboolean loadConfig(const gchar *filename, CfgFile *lcfg) {
     handleXMLError();
     xmlSetGenericErrorFunc(NULL, NULL);
 
+    xmlDtdPtr xdtd = xmlParseDTD(NULL, BAD_CAST(XML_SCHEMA_DIR"/apt-dater.dtd"));
+
     /* Validate against DTD. */
     xmlValidCtxtPtr xval = xmlNewValidCtxt();
-    if(xmlValidateDocument(xval, xcfg) == 0) {
+    if(xmlValidateDtd(xval, xcfg, xdtd) == 0) {
       xmlFreeValidCtxt(xval);
+      xmlFreeDtd(xdtd);
+      xmlFreeDoc(xcfg);
       return(FALSE);
     }
     xmlFreeValidCtxt(xval);
+    xmlFreeDtd(xdtd);
 
     /* Allocate XPath context. */
     xmlXPathContextPtr xctx = xmlXPathNewContext(xcfg);
@@ -472,13 +477,18 @@ GList *loadHosts (const gchar *filename) {
     handleXMLError();
     xmlSetGenericErrorFunc(NULL, NULL);
 
+    xmlDtdPtr xdtd = xmlParseDTD(NULL, BAD_CAST(XML_SCHEMA_DIR"/hosts.dtd"));
+
     /* Validate against DTD. */
     xmlValidCtxtPtr xval = xmlNewValidCtxt();
-    if(xmlValidateDocument(xval, xcfg) == 0) {
+    if(xmlValidateDtd(xval, xcfg, xdtd) == 0) {
       xmlFreeValidCtxt(xval);
+      xmlFreeDtd(xdtd);
+      xmlFreeDoc(xcfg);
       return(FALSE);
     }
     xmlFreeValidCtxt(xval);
+    xmlFreeDtd(xdtd);
 
     /* Allocate XPath context. */
     xmlXPathContextPtr xctx = xmlXPathNewContext(xcfg);

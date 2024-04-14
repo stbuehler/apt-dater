@@ -31,10 +31,6 @@ xmlschemadir = get_option('xmlschemadir')
 if xmlschemadir == ''
   xmlschemadir = get_option('prefix') / get_option('datadir') / 'xml' / 'schema' / meson.project_name()
 endif
-xmlschemauri = get_option('xmlschemauri')
-if xmlschemauri == ''
-  xmlschemauri = 'file://' + xmlschemadir
-endif
 
 date_exe = find_program('date', native: true)
 source_date_epoch = run_command('sh', '-c', 'echo $SOURCE_DATE_EPOCH', check: false).stdout().strip()
@@ -62,7 +58,6 @@ endif
 conffile_data = configuration_data()
 conffile_data.set('localstatedir', localstatedir)
 conffile_data.set('sysconfdir', sysconfdir)
-conffile_data.set('XMLSCHEMAURI', xmlschemauri)
 
 configuration = configuration_data()
 configuration.set_quoted('PACKAGE', meson.project_name())
@@ -72,7 +67,6 @@ configuration.set_quoted('SOURCE_DATE_UTC', formatted_date)
 configuration.set_quoted('PKGLIBDIR', pkglibdir)
 configuration.set_quoted('sysconfdir', sysconfdir)
 configuration.set_quoted('XML_SCHEMA_DIR', xmlschemadir)
-configuration.set_quoted('XML_SCHEMA_URI', xmlschemauri)
 
 # always on.. should probably remove the checks
 configuration.set('HAVE_COLOR', 1)
@@ -137,7 +131,6 @@ summary(
     'pkglibdir': pkglibdir,
     'sysconfdir': sysconfdir,
     'xmlschemadir': xmlschemadir,
-    'xmlschemauri': xmlschemauri,
     'localstatedir': localstatedir,
   },
   section: 'Directories',

@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE apt-dater SYSTEM "@XMLSCHEMAURI@/apt-dater.dtd">
 <apt-dater xmlns:xi="http://www.w3.org/2001/XInclude">
     <!-- Include global config file if available. -->
     <xi:include href="file://@sysconfdir@/apt-dater/apt-dater.xml" xpointer="xpointer(/apt-dater/*)">

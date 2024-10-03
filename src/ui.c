@@ -447,7 +447,7 @@ void setHostsCategory(GList *hosts, Category matchCategory, gchar *matchGroup, C
   if(matchGroup) {
    if((((HostNode *) ho->data)->category == matchCategory) && (!g_ascii_strcasecmp(((HostNode *) ho->data)->group, matchGroup))) ((HostNode *) ho->data)->category = setCategory;
   }
-  else if((((HostNode *) ho->data)->category == matchCategory)) ((HostNode *) ho->data)->category = setCategory;
+  else if(((HostNode *) ho->data)->category == matchCategory) ((HostNode *) ho->data)->category = setCategory;
   ho = g_list_next(ho);
  }
 }
